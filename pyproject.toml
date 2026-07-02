@@ -1,0 +1,15 @@
+[project]
+name = "ai-agent"
+version = "0.1.0"
+description = "A CLI-based AI coding agent that autonomously reads, edits, and executes files to complete natural language tasks."
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "openai==2.44.0",
+    "python-dotenv==1.1.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.20",
+]
