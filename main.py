@@ -8,6 +8,19 @@ BASE_URL = "https://openrouter.ai/api/v1"
 MODEL = "openrouter/free"
 
 
+def print_response_details(prompt, response):
+    print(f"User prompt: {prompt}")
+
+    if response.usage is None:
+        raise RuntimeError(
+            "Missing token usage information. The API request may have failed."
+        )
+    print(f"Prompt tokens: {response.usage.prompt_tokens}")
+    print(f"Response tokens: {response.usage.completion_tokens}")
+
+    print("Response:", response.choices[0].message.content, sep="\n")
+
+
 def main():
 
     load_dotenv()
@@ -28,7 +41,7 @@ def main():
     ]
 
     completion = client.chat.completions.create(model=MODEL, messages=messages)
-    print(completion.choices[0].message.content)
+    print_response_details(messages[0]["content"], completion)
 
 
 if __name__ == "__main__":
